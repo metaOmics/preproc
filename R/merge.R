@@ -30,7 +30,7 @@
 ##'   x <- PoolReplicate(dataset=x)
 ##' }
 ##' study.eg <- lapply(study.eg, SinglePreproc)
-##' res <- Merge(datasets = study.eg)
+##' res <- Merge(datasets=study.eg)
 
 Merge <- function(datasets, name) {
   if (class(datasets) != "list")
@@ -48,23 +48,10 @@ Merge.matrix <- function(datasets) {
   id.count <- table(unlist(symbol))
   n <- length(symbol)
   common.id <- names(which(id.count >= n))
-  
-  MatchId <- function(study) {
-    exprs <- study
-    id <- rownames(exprs)
-    diff.id <- setdiff(common.id, id)
-    n.sample <- ncol(exprs)
-    margin.na <- matrix(NA, ncol=n.sample, nrow=length(diff.id))
-    colnames(margin.na) <- colnames(exprs)
-    rownames(margin.na) <- diff.id
-    exprs <- rbind(exprs, margin.na)
-    index <- match(common.id, rownames(exprs))
-    exprs2 <- exprs[index, ]
-    return(exprs2)
-  }
-
-  res <- lapply(datasets, MatchId)
-  return(res)
+  if(is.null(common.id))
+    stop("there is no common id between the datasets")
+  else
+    lapply(datasets, function(dataset) as.matrix(dataset[common.id,]))
 }
 
 Merge.Study <- function(datasets, name) {
