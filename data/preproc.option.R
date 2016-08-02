@@ -1,11 +1,11 @@
-ID.TYPE.probeID    <- "ProbeID"
 ID.TYPE.geneSymbol <- "GeneSymbol"
+ID.TYPE.probeID    <- "ProbeID"
 ID.TYPE.RefSeqID   <- "RefSeqID"
 ID.TYPE.EntrezID   <- "EntrezID"
 ID.TYPE.all <-
-  c(ID.TYPE.probeID, ID.TYPE.geneSymbol, ID.TYPE.RefSeqID, ID.TYPE.EntrezID)
+  c(ID.TYPE.geneSymbol, ID.TYPE.probeID, ID.TYPE.RefSeqID, ID.TYPE.EntrezID)
 names(ID.TYPE.all) <- 
-  c("Probe ID", "Gene Symbol", "Reference Sequence ID", "Entrez ID")
+  c("Gene Symbol", "Probe ID", "Reference Sequence ID", "Entrez ID")
 
 SPECIES.human <- "human"
 SPECIES.mouse <- "mouse"

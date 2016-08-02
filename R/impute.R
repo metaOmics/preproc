@@ -79,5 +79,6 @@ setMethod("Impute", signature(dataset="Study"),
     study@datasets <- lapply(study@datasets, function(dataset) {
       Impute(dataset, method, k)
     })
+    study
   }
 )
