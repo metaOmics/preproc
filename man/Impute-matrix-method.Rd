@@ -25,9 +25,7 @@ A gene expression matrix with missing value imputed.
 \description{
 Title Impute Gene Expression Matrix
 }
-\examples{
-data(study.eg)
-data(preproc.option)
-res <- Impute(study.eg[[1]])
+\author{
+Schwannden Kuo
 }
 

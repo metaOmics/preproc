@@ -14,13 +14,13 @@ shouldSuccess("Impute matrix with remove impute", {
 
 shouldSuccess("Impute study object with knn impute", {
   res <- Impute(TEST.study, k=3)
-  if(any(is.na(res)))
+  if(any(is.na(res@datasets[[1]])))
     stop("there are still NA value is the cells")
 
 })
 
 shouldSuccess("Impute study object with remove impute", {
   res <- Impute(TEST.study, method=IMPUTE.method.remove)
-  if(any(is.na(res)))
+  if(any(is.na(res@datasets[[1]])))
     stop("there are still NA value is the cells")
 })

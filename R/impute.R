@@ -17,14 +17,17 @@
 #' default is \code{10}.
 #' @return A matrix of the gene expressions after dealing with
 #' missing values.
-#' @author Lin Wang
+#' @author Lin Wang, Schwannden Kuo
 #' @import DMwR
 #' @export
 #' @examples
-#' data(study.eg)
+#' data(datasets.eg)
 #' data(preproc.option)
-#' res <- Impute(dataset = study.eg[[1]])
-# generic function "Impute"
+#' # Impute for expression matrix
+#' res <- Impute(datasets.eg[[1]], method=IMPUTE.method.knn)
+#' # Impute for Study object
+#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg[1])
+#' res <- Impute(study, method=IMPUTE.method.remove)
 setGeneric("Impute",
   function(dataset, method=IMPUTE.method.knn, k=10) {
     standardGeneric("Impute")
@@ -37,13 +40,8 @@ setGeneric("Impute",
 #' @inheritParams Impute
 #'
 #' @return A gene expression matrix with missing value imputed.
+#' @author Schwannden Kuo
 #' @export
-#'
-#' @examples
-#' data(study.eg)
-#' data(preproc.option)
-#' res <- Impute(study.eg[[1]])
-
 setMethod("Impute", signature(dataset="matrix"),
   function(dataset, method, k=10) {
     if (method == IMPUTE.method.knn) {
@@ -66,13 +64,8 @@ setMethod("Impute", signature(dataset="matrix"),
 #' @inheritParams Impute
 #'
 #' @return Study object with missing value imputed.
+#' @author Schwannden Kuo
 #' @export
-#'
-#' @examples
-#' data(study.eg)
-#' data(preproc.option)
-#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=study.eg[1])
-#' res <- Impute(study)
 setMethod("Impute", signature(dataset="Study"),
   function(dataset, method, k=10) {
     study <- dataset

@@ -17,9 +17,9 @@ present in the Study, the datasets are column binded.
 Title Study to matrix
 }
 \examples{
-data(study.eg)
+data(datasets.eg)
 data(preproc.option)
-study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=study.eg)
+study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg)
 to.matrix(study)
 }
 \author{
