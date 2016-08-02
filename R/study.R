@@ -35,7 +35,7 @@ validateStudy <- function(object) {
       if (length(clinical.attr) != ref.dimension || any(clinical.attr != ref.names))
         errors <- c(errors, "all clinical data should have same number of attributes")
       samples <- colnames(object@datasets[[i]])
-      if (!all(samples %in% rownames(clinical)))
+      if (nrow(clinical) > 0 && !all(samples %in% rownames(clinical)))
         errors <- c(errors, "all samples must have clinical data")
     }
   }
