@@ -55,18 +55,22 @@ very low counts are filtered out. These genes are identified with
 minimum of mean counts across studies.
 }
 \examples{
-data(study.eg)
+data(datasets.eg)
 data(preproc.option)
 SinglePreproc <- function(x) {
   x <- Annotate(dataset=x, id.type = "ProbeID", platform=PLATFORM.hgu133plus2)
   x <- Impute(dataset=x)
   x <- PoolReplicate(dataset=x)
 }
-study.eg <- lapply(study.eg, SinglePreproc)
-study.eg <- Merge(datasets=study.eg)
-res <- Filter(datasets=study.eg, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
+datasets.eg <- lapply(datasets.eg, SinglePreproc)
+datasets.eg <- Merge(datasets=datasets.eg)
+# Filter for matrix
+res <- Filter(datasets=datasets.eg, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
+# Filter for Study
+study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg)
+res <- Filter(datasets=study, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
 }
 \author{
-Lin Wang
+Lin Wang, Schwannden Kuo
 }
 

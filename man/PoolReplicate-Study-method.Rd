@@ -20,4 +20,7 @@ A Study object with datasets of unique row entries
 \description{
 Title Handle Duplicated Gene Symbol
 }
+\author{
+Schwannden Kuo
+}
 

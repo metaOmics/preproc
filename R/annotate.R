@@ -63,15 +63,14 @@
 #' @importFrom utils read.delim
 #' @export
 #' @examples
-#' data(study.eg)
+#' data(datasets.eg)
 #' data(preproc.option)
 #' # Annotate Expression Matrix
-#' res <- Annotate(dataset=study.eg[[1]], id.type=ID.TYPE.probeID, platform=PLATFORM.hgu133plus2)
+#' res <- Annotate(dataset=datasets.eg[[1]], id.type=ID.TYPE.probeID, 
+#'                 platform=PLATFORM.hgu133plus2)
 #' # Annotate Study
-#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=study.eg[1])
+#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg[1])
 #' res <- Annotate(study, id.type=ID.TYPE.probeID, platform=PLATFORM.hgu133plus2)
-
-# generic function "Annotate"
 setGeneric("Annotate",
   function(dataset, id.type=ID.TYPE.geneSymbol, platform="", species="", annotation.file=NA) {
     standardGeneric("Annotate")

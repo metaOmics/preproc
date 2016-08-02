@@ -21,7 +21,7 @@ shouldSuccess("setting cliical data", {
   setClinical(study, list(clinical))
 })
 
-shouldSuccess("setting missing cliical data", {
+shouldFail("setting missing cliical data", {
   clinical <- ReadClinical("test/data/study.pdata.missing.csv")
   setClinical(study, list(clinical))
 })

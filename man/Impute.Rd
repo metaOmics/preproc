@@ -33,11 +33,15 @@ averaging or remove the genes with missing values directly.
 See also \link{knnImputation}.
 }
 \examples{
-data(study.eg)
+data(datasets.eg)
 data(preproc.option)
-res <- Impute(dataset = study.eg[[1]])
+# Impute for expression matrix
+res <- Impute(datasets.eg[[1]], method=IMPUTE.method.knn)
+# Impute for Study object
+study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg[1])
+res <- Impute(study, method=IMPUTE.method.remove)
 }
 \author{
-Lin Wang
+Lin Wang, Schwannden Kuo
 }
 

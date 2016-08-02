@@ -15,7 +15,7 @@ read. See details.}
 
 \item{dtype}{The data type of the dataset (should be one of DTYPE.all)}
 
-\item{clinical.file}{if there is a clinical file containing clinical 
+\item{clinical.file}{if there is a clinical file containing clinical
 data relevent to the dataset.}
 
 \item{log}{logical. Specify whether the gene expressions need to
@@ -57,8 +57,15 @@ should be gene expression profiles for the samples.
 \examples{
 data(study.eg)
 data(preproc.option)
-write.csv(study.eg[[1]], file="study.txt")
-mydata <- ReadExpr(file.name="study.txt", name="test", dtype=DTYPE.microarray)
+write.csv(study.eg@datasets[[1]], file="expr.csv")
+write.csv(study.eg@clinicals[[1]], file="clinical.csv")
+# Simply read expression data and append clinical data later
+study <- ReadExpr(file.name="expr.csv", name="test", dtype=DTYPE.microarray)
+clinical <- ReadClinical(file.name="clinical.csv")
+study <- setClinical(study, list(clinical))
+# Read expression and clinical data
+study <- ReadExpr(file.name="expr.csv", name="test", dtype=DTYPE.microarray,
+                   clinical.file="clinical.csv")
 }
 \author{
 Lin Wang, Schwannden Kuo

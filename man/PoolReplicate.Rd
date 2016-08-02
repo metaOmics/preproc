@@ -42,12 +42,18 @@ the expressions.
 }
 }
 \examples{
-data(study.eg)
+data(datasets.eg)
 data(preproc.option)
-mydata <- Annotate(dataset=study.eg[[1]], id.type=ID.TYPE.probeID,
+# PoolReplicate for matrix
+mydata <- Annotate(datasets.eg[[1]], id.type=ID.TYPE.probeID,
                    platform=PLATFORM.hgu133plus2)
-mydata <- Impute(dataset=mydata)
-res  <- PoolReplicate(dataset=mydata)
+mydata <- Impute(mydata)
+res  <- PoolReplicate(mydata, method=REPLICATE.IQR)
+# PoolReplicate for Study
+study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg[1])
+study <- Annotate(study, id.type=ID.TYPE.probeID, platform=PLATFORM.hgu133plus2)
+study <- Impute(study)
+res  <- PoolReplicate(mydata, method=REPLICATE.IQR)
 }
 \author{
 Lin Wang, Schwannden Kuo
