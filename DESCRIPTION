@@ -1,0 +1,29 @@
+Package: preproc
+Type: Package
+Title: Preprocessing of Normalized Gene Expression Data
+Version: 1.0-0
+Date: 2016-07-07
+Author: Lin Wang, Schwannden Kuo
+Maintainer: Schwannden Kuo <schwannden@gmail.com> Lin Wang <wanglin2009@amss.ac.cn>
+Depends: utils, AnnotationDbi, DMwR, R(>= 2.14.1)
+Suggests: hgu95a.db, hgu95av2.db, hgu95b.db, hgu95c.db, hgu95d.db,
+        hgu95e.db, hgu133a.db, hgu133b.db, hgu133plus2.db,
+        illuminaHumanv3.db, illuminaHumanv4.db, illuminaHumanv1.db,
+        illuminaHumanv2.db, illuminaHumanv2BeadID.db, hgug4100a.db,
+        hgug4101a.db, hgug4110b.db, hgug4111a.db, hgug4112a.db,
+        mgu74a.db, mgu74av2.db, mgu74b.db, mgu74bv2.db, mgu74c.db,
+        mgu74cv2.db, moe430a.db, moe430b.db, mouse4302.db,
+        illuminaMousev1.db, illuminaMousev2.db, mgug4104a.db,
+        mgug4120a.db, mgug4121a.db, mgug4122a.db, rat2302.db,
+        rgu34a.db, rgu34b.db, rgu34c.db, illuminaRatv1.db,
+        rgug4105a.db, rgug4130a.db, rgug4131a.db, org.Hs.eg.db,
+        org.Mm.eg.db, org.Rn.eg.db
+Description: Preprocessing of normalized gene expression data including 
+	annotation, missing value imputation, replicated genes pooling, 
+	data sets merging, and gene filtering.
+License: GPL-2
+Collate: 'preproc.option.R' 'study.R' 'read.expr.R' 'annotate.R' 'impute.R'
+        'pool.replicate.R' 'merge.R' 'filter.R'
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2016-07-13 16:26:22 UTC; Administrator
