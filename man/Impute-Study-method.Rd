@@ -25,10 +25,7 @@ Study object with missing value imputed.
 \description{
 Title Impute Study
 }
-\examples{
-data(study.eg)
-data(preproc.option)
-study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=study.eg[1])
-res <- Impute(study)
+\author{
+Schwannden Kuo
 }
 

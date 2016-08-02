@@ -33,15 +33,21 @@ the common genes across studies. The merged data sets have the
 same genes in the same order.
 }
 \examples{
-data(study.eg)
+data(datasets.eg)
 data(preproc.option)
 SinglePreproc <- function(x) {
   x <- Annotate(dataset=x, id.type=ID.TYPE.probeID, platform=PLATFORM.hgu133plus2)
   x <- Impute(dataset=x)
   x <- PoolReplicate(dataset=x)
 }
-study.eg <- lapply(study.eg, SinglePreproc)
-res <- Merge(datasets = study.eg)
+# Merge for list of expression matrix
+datasets.eg <- lapply(datasets.eg, SinglePreproc)
+res <- Merge(datasets=datasets.eg)
+# Merge for list of Study
+studies <- lapply(datasets.eg, function(dataset) {
+             new("Study", name="test", dtype=DTYPE.microarray, datasets=list(dataset))
+           })
+res <- Merge(datasets=studies, name="mergedStudy")
 }
 \author{
 Lin Wang, Schwannden Kuo

@@ -30,12 +30,18 @@
 #' @importFrom stats IQR
 #' @export
 #' @examples
-#' data(study.eg)
+#' data(datasets.eg)
 #' data(preproc.option)
-#' mydata <- Annotate(dataset=study.eg[[1]], id.type=ID.TYPE.probeID,
+#' # PoolReplicate for matrix
+#' mydata <- Annotate(datasets.eg[[1]], id.type=ID.TYPE.probeID,
 #'                    platform=PLATFORM.hgu133plus2)
-#' mydata <- Impute(dataset=mydata)
-#' res  <- PoolReplicate(dataset=mydata)
+#' mydata <- Impute(mydata)
+#' res  <- PoolReplicate(mydata, method=REPLICATE.IQR)
+#' # PoolReplicate for Study
+#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg[1])
+#' study <- Annotate(study, id.type=ID.TYPE.probeID, platform=PLATFORM.hgu133plus2)
+#' study <- Impute(study)
+#' res  <- PoolReplicate(mydata, method=REPLICATE.IQR)
 setGeneric("PoolReplicate",
   function(dataset, method=REPLICATE.IQR) {
     standardGeneric("PoolReplicate")
@@ -48,6 +54,7 @@ setGeneric("PoolReplicate",
 #' @inheritParams PoolReplicate
 #'
 #' @return A gene expression matrix with unique row entries.
+#' @author Schwannden Kuo
 #' @export
 setMethod("PoolReplicate", signature(dataset="matrix"),
   function(dataset, method) {
@@ -90,6 +97,7 @@ setMethod("PoolReplicate", signature(dataset="matrix"),
 #' @inheritParams PoolReplicate
 #'
 #' @return A Study object with datasets of unique row entries
+#' @author Schwannden Kuo
 #' @export
 setMethod("PoolReplicate", signature(dataset="Study"),
   function(dataset, method) {

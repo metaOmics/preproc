@@ -20,4 +20,7 @@ A gene expression matrix with unique row entries.
 \description{
 Title Handle Duplicated Gene Symbol
 }
+\author{
+Schwannden Kuo
+}
 

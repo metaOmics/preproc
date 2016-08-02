@@ -38,33 +38,32 @@
 #' matrix is for one study. Each row of the matrix is for one gene
 #' and each column is for one sample. The row names are gene
 #' symbols.
-#' @author Lin Wang
+#' @author Lin Wang, Schwannden Kuo
 #' @importFrom stats quantile
 #' @export
 #' @examples
-#' data(study.eg)
+#' data(datasets.eg)
 #' data(preproc.option)
 #' SinglePreproc <- function(x) {
 #'   x <- Annotate(dataset=x, id.type = "ProbeID", platform=PLATFORM.hgu133plus2)
 #'   x <- Impute(dataset=x)
 #'   x <- PoolReplicate(dataset=x)
 #' }
-#' study.eg <- lapply(study.eg, SinglePreproc)
-#' study.eg <- Merge(datasets=study.eg)
-#' res <- Filter(datasets=study.eg, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
-
+#' datasets.eg <- lapply(datasets.eg, SinglePreproc)
+#' datasets.eg <- Merge(datasets=datasets.eg)
+#' # Filter for matrix
+#' res <- Filter(datasets=datasets.eg, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
+#' # Filter for Study
+#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg)
+#' res <- Filter(datasets=study, data.type=DTYPE.microarray, del.perc=c(0.3, 0.2))
 Filter <- function(datasets, data.type, del.perc=c(0.3, 0.3), threshold=1) {
-  if (class(datasets) != "list")
-    stop("Filter only apply on list of Study or list of matrix")
-  if (length(datasets) == 0)
-    stop("Applying filter to an empty datasets")
-  if (class(datasets[[1]]) == "matrix")
-    Filter.matrix(datasets, data.type, del.perc, threshold)
-  else if (class(datasets[[1]]) == "Study")
+  if (class(datasets) == "list")
+    Filter.list(datasets, data.type, del.perc, threshold)
+  else if (class(datasets) == "Study")
     Filter.Study(datasets, data.type, del.perc, threshold)
 }
 
-Filter.matrix <- function(datasets, data.type, del.perc, threshold) {
+Filter.list <- function(datasets, data.type, del.perc, threshold) {
   if (data.type == DTYPE.continuous || data.type == DTYPE.RNAseq.FPKM ||
       data.type == DTYPE.microarray) {
     mean.rank <- sapply(datasets,
@@ -94,6 +93,6 @@ Filter.matrix <- function(datasets, data.type, del.perc, threshold) {
 
 Filter.Study <- function(datasets, data.type, del.perc, threshold) {
   study <- datasets
-  study@datasets <- Filter.matrix(study@datasets, data.type, del.perc, threshold)
+  study@datasets <- Filter.list(study@datasets, data.type, del.perc, threshold)
   study
 }
