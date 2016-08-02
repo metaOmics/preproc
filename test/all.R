@@ -1,0 +1,11 @@
+library(preproc)
+source("test/test_helper.R")
+source("test/data.R")
+data("preproc.option")
+
+script.dir <- getwd()
+cat(script.dir, "\n")
+source("./test/read.expr.R")
+source("./test/impute.R")
+source("./test/annotation.R")
+source("./test/pool.replicate.R")
