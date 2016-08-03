@@ -150,6 +150,7 @@ GetBiomaps <- function(id.type, platform, species) {
     biomaps <- c(biomaps, biomap_name)
   }
   # getting the real biomaps from the names we inserted in biomaps vector
+  CheckAndInstall(biomaps)
   biomaps <- sapply(biomaps,
     function(biomap_name) eval(parse(text=biomap_name))
   )
@@ -173,4 +174,22 @@ TransformDataNames <- function(dataset, biomaps) {
     rownames(dataset) <- names.new
   }
   return (dataset)
+}
+
+CheckAndInstall <- function(biomaps) {
+  installed <- installed.packages()[,"Package"]
+  for (biomap in biomaps) {
+    package <- strsplit(biomap, split="::")[[1]][1]
+    if(!(package %in% installed)) {
+      tryCatch(
+        source("https://bioconductor.org/biocLite.R"),
+        error=function(e) {
+          if (e$message == "cannot open connection")
+            stop(paste("unable to connect, can't install package:", 
+                       package, ", needed for annotation"))
+        }
+      )
+      biocLite(package, ask=F, suppressUpdates=T, suppressAutoUpdate=T)
+    }
+  }
 }
