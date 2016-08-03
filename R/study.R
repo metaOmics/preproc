@@ -2,6 +2,8 @@
 validateStudy <- function(object) {
   errors <- character()
   # checking data type is a valid option
+  if(object@name == "")
+    errors <- c(errors, "name is a required parameter")
   if(!(object@dtype %in% DTYPE.all))
     errors <- c(errors, paste("dtype should be one of: ", paste(DTYPE.all, collapse=" ")))
   # checking numeric type is a valid option
@@ -80,6 +82,7 @@ setClass("Study",
     clinicals="list"
   ),
   prototype(
+    name="",
     ntype="",
     stype="",
     clinicals=list()
