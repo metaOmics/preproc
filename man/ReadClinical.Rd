@@ -12,14 +12,14 @@ ReadClinical(file.name, sep = ",", quote = "\\"")
 \item{sep}{the field separator character. Values on each line of
 the file are separated by this character. If \code{sep = ""}, the
 separator is 'white space', that is one or more spaces, tabs,
-newlines or carriage returns. The default is \code{"\t"}. See
+newlines or carriage returns. The default is \code{,}. See
 \link{read.csv}.}
 
 \item{quote}{the set of quoting characters. To disable quoting
 altogether, use \code{quote = ""}.  See \link{scan} for the
 behaviour on quotes embedded in quotes. Quoting is only
 considered for columns read as character, which is all of them
-unless colClasses is specified.  The default is \code{'"'}. See
+unless colClasses is specified.  The default is \code{\"}. See
 \link{read.csv}.}
 }
 \value{

@@ -24,7 +24,7 @@
 #' altogether, use \code{quote = ""}.  See \link{scan} for the
 #' behaviour on quotes embedded in quotes. Quoting is only
 #' considered for columns read as character, which is all of them
-#' unless colClasses is specified.  The default is \code{"}. See
+#' unless colClasses is specified.  The default is \code{\"}. See
 #' \link{read.csv}.
 #' @param header a logical value indicating whether the file contains
 #' the names of the variables as its first line. If missing, the
@@ -84,7 +84,7 @@ ReadExpr <- function(file.name, name, dtype, clinical.file=NULL,
 #' altogether, use \code{quote = ""}.  See \link{scan} for the
 #' behaviour on quotes embedded in quotes. Quoting is only
 #' considered for columns read as character, which is all of them
-#' unless colClasses is specified.  The default is \code{"}. See
+#' unless colClasses is specified.  The default is \code{\"}. See
 #' \link{read.csv}.
 #'
 #' @return a data.frame of clinical data

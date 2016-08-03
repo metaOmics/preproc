@@ -5,10 +5,10 @@ validateStudy <- function(object) {
   if(!(object@dtype %in% DTYPE.all))
     errors <- c(errors, paste("dtype should be one of: ", paste(DTYPE.all, collapse=" ")))
   # checking numeric type is a valid option
-  if(!(object@ntype %in% NTYPE.all))
+  if(object@ntype != "" && !(object@ntype %in% NTYPE.all))
     errors <- c(errors, paste("ntype should be one of: ", paste(NTYPE.all, collapse=" ")))
   # checking numeric type is a valid option
-  if(!(object@stype %in% STYPE.all))
+  if(object@stype != "" && !(object@stype %in% STYPE.all))
     errors <- c(errors, paste("stype should be one of: ", paste(STYPE.all, collapse=" ")))
   # checking if the datasets is a list
   if (class(object@datasets) != "list")
