@@ -4,6 +4,12 @@ validateStudy <- function(object) {
   # checking data type is a valid option
   if(!(object@dtype %in% DTYPE.all))
     errors <- c(errors, paste("dtype should be one of: ", paste(DTYPE.all, collapse=" ")))
+  # checking numeric type is a valid option
+  if(!(object@ntype %in% NTYPE.all))
+    errors <- c(errors, paste("ntype should be one of: ", paste(NTYPE.all, collapse=" ")))
+  # checking numeric type is a valid option
+  if(!(object@stype %in% STYPE.all))
+    errors <- c(errors, paste("stype should be one of: ", paste(STYPE.all, collapse=" ")))
   # checking if the datasets is a list
   if (class(object@datasets) != "list")
     errors <- c(errors, "datasets should be a list of matrix")
@@ -11,10 +17,12 @@ validateStudy <- function(object) {
   if (length(object@datasets) == 0)
     errors <- c(errors, "initialize datasets with at least one dataset")
   # checking if all dataset is matrix
+  error <- NULL
   for(dataset in object@datasets) {
     if(class(dataset) != "matrix")
-      errors <- c(errors, "datasets contains non matrix element\n")
+      error <- "datasets contains non matrix element\n"
   }
+  errrors <- c(errors, error)
   # checking if the datasets is a list
   if (class(object@clinicals) != "list")
     errors <- c(errors, "clinicals should be a list of data.frame")

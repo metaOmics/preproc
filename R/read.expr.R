@@ -18,19 +18,20 @@
 #' @param sep the field separator character. Values on each line of
 #' the file are separated by this character. If \code{sep = ""}, the
 #' separator is 'white space', that is one or more spaces, tabs,
-#' newlines or carriage returns. The default is \code{"\t"}. See
+#' newlines or carriage returns. The default is \code{,}. See
 #' \link{read.csv}.
 #' @param quote the set of quoting characters. To disable quoting
 #' altogether, use \code{quote = ""}.  See \link{scan} for the
 #' behaviour on quotes embedded in quotes. Quoting is only
 #' considered for columns read as character, which is all of them
-#' unless colClasses is specified.  The default is \code{'"'}. See
+#' unless colClasses is specified.  The default is \code{"}. See
 #' \link{read.csv}.
 #' @param header a logical value indicating whether the file contains
 #' the names of the variables as its first line. If missing, the
 #' value is determined from the file format: \code{header} is set to
 #' \code{TRUE} if and only if the first row contains one fewer field
-#' than the number of columns. The default is \code{TRUE}.
+#' than the number of columns. The default is \code{TRUE}. See
+#' \link{read.csv}.
 #' @return A Study object
 #' @author Lin Wang, Schwannden Kuo
 #' @importFrom utils read.csv
@@ -77,13 +78,13 @@ ReadExpr <- function(file.name, name, dtype, clinical.file=NULL,
 #' @param sep the field separator character. Values on each line of
 #' the file are separated by this character. If \code{sep = ""}, the
 #' separator is 'white space', that is one or more spaces, tabs,
-#' newlines or carriage returns. The default is \code{"\t"}. See
+#' newlines or carriage returns. The default is \code{,}. See
 #' \link{read.csv}.
 #' @param quote the set of quoting characters. To disable quoting
 #' altogether, use \code{quote = ""}.  See \link{scan} for the
 #' behaviour on quotes embedded in quotes. Quoting is only
 #' considered for columns read as character, which is all of them
-#' unless colClasses is specified.  The default is \code{'"'}. See
+#' unless colClasses is specified.  The default is \code{"}. See
 #' \link{read.csv}.
 #'
 #' @return a data.frame of clinical data
