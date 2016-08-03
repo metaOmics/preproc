@@ -1,7 +1,7 @@
 library(preproc)
+data("preproc.option")
 source("test/test_helper.R")
 source("test/data.R")
-data("preproc.option")
 
 script.dir <- getwd()
 cat(script.dir, "\n")

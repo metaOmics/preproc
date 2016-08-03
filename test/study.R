@@ -3,7 +3,7 @@ shouldSuccess("create study", {
 })
 
 shouldFail("can not createa study without a name", {
-  new("Study", dtype=DTYPE.microarray, datasets=list(matrix))
+  new("Study", dtype=DTYPE.microarray, datasets=list(matrix()))
 })
 
 shouldFail("can not createa study without dtype", {
