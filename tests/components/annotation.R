@@ -1,5 +1,5 @@
 dataset <- TEST.study@datasets[[1]]
-TEST.dataset.annotated <- read.csv("test/data/dataset.annotated.csv", header=T)
+TEST.dataset.annotated <- read.csv("data/dataset.annotated.csv", header=T)
 TEST.dataset.annotated <- as.matrix(TEST.dataset.annotated)
 row.names(TEST.dataset.annotated) <- TEST.dataset.annotated[,1]
 TEST.dataset.annotated <- TEST.dataset.annotated[,-1]

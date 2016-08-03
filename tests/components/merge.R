@@ -1,5 +1,5 @@
-s1 <- ReadExpr("test/data/study.edata.csv", name="test", dtype=DTYPE.microarray,
-               clinical.file="test/data/study.pdata.csv")
+s1 <- ReadExpr("data/study.edata.csv", name="test", dtype=DTYPE.microarray,
+               clinical.file="data/study.pdata.csv")
 s2 <- s1
 s3 <- s1
 
