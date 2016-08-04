@@ -3,8 +3,6 @@ data("preproc.option")
 source("components/test_helper.R")
 source("data/data.R")
 
-script.dir <- getwd()
-cat(script.dir, "\n")
 source("components/study.R")
 source("components/read.expr.R")
 source("components/impute.R")

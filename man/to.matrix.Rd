@@ -4,10 +4,14 @@
 \alias{to.matrix}
 \title{Title Study to matrix}
 \usage{
-to.matrix(study)
+to.matrix(study, what = TO.MATRIX.datasets)
 }
 \arguments{
 \item{study}{A Study object.}
+
+\item{what}{get datasets matrix or clinical data matrix. Datasets matrix 
+results from datasets being column binded together. clinical data matrix
+results from clinical data being row binded together.}
 }
 \value{
 The Gene expression matrix of the Study, and if more then one dataset
@@ -17,10 +21,10 @@ present in the Study, the datasets are column binded.
 Title Study to matrix
 }
 \examples{
-data(datasets.eg)
+data(study.eg)
 data(preproc.option)
-study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg)
-to.matrix(study)
+dataset.matrix <- to.matrix(study.eg)
+clinical.matrix <- to.matrix(study.eg, what=TO.MATRIX.clinicals)
 }
 \author{
 Schwannden Kuo

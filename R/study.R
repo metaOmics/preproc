@@ -92,7 +92,25 @@ setClass("Study",
 
 setMethod("initialize", "Study",
   function(.Object, name, dtype, datasets, clinicals) {
+    # First use default contructor and call the validator
     .Object <- callNextMethod()
+    # Setting default name for the gene expression matrix
+    # This is useful for multiple study to recover single study's name
+    if(is.null(names(datasets)) && length(datasets) == 1) {
+      datasets <- .Object@datasets
+      names(datasets) <- name
+      .Object@datasets <- datasets
+    }
+    # Rearranging clinical data
+    n <- length(.Object@clinicals)
+    if (n > 0) {
+      for (i in 1:n) {
+        dataset  <- .Object@datasets[[i]]
+        clinical <- .Object@clinicals[[i]]
+        sample.names <- row.names(dataset)
+        .Object@clinicals[[i]] <- clinical[sample.names,]
+      }
+    }
     .Object@stype <- stype(.Object@datasets)
     .Object@ntype <- ntype(dtype)
     .Object
@@ -319,6 +337,9 @@ setClinical <- function(study, clinicals) {
 #' Title Study to matrix
 #'
 #' @param study A Study object.
+#' @param what get datasets matrix or clinical data matrix. Datasets matrix 
+#' results from datasets being column binded together. clinical data matrix
+#' results from clinical data being row binded together.
 #'
 #' @return The Gene expression matrix of the Study, and if more then one dataset
 #' present in the Study, the datasets are column binded.
@@ -326,11 +347,16 @@ setClinical <- function(study, clinicals) {
 #' @export
 #'
 #' @examples
-#' data(datasets.eg)
+#' data(study.eg)
 #' data(preproc.option)
-#' study <- new("Study", name="test", dtype=DTYPE.microarray, datasets=datasets.eg)
-#' to.matrix(study)
-to.matrix <- function(study) {
-  do.call(cbind, study@datasets)
+#' dataset.matrix <- to.matrix(study.eg)
+#' clinical.matrix <- to.matrix(study.eg, what=TO.MATRIX.clinicals)
+to.matrix <- function(study, what=TO.MATRIX.datasets) {
+  if (what == TO.MATRIX.datasets)
+    do.call(cbind, study@datasets)
+  else if (what == TO.MATRIX.clinicals) {
+    clinicals <- lapply(study@clinicals, function(x) as.matrix(x))
+    do.call(rbind, clinicals)
+  }
 }
 

@@ -68,15 +68,13 @@ Merge.Study <- function(datasets, name) {
     study.dtype <- DTYPE.discrete
   else
     stop("You can't merge continuous data with discrete data")
-  datasets <- Merge.matrix(lapply(studies, function(s) to.matrix(s)))
-  clinicals <- lapply(studies, function(study) 
-    as.data.frame(clinical.to.matrix(study@clinicals))
-  )
+  datasets  <- c()
+  clinicals <- c()
+  for (study in studies) {
+    datasets  <- c(datasets, study@datasets)
+    clinicals <- c(clinicals, study@clinicals)
+  }
+  datasets <- Merge.matrix(datasets)
   new("Study", name=name, dtype=study.dtype, datasets=datasets, clinicals=clinicals)
-}
-
-# take datasets and merge it into a matrix
-clinical.to.matrix=function(clinicals) {
-  do.call(rbind, clinicals)
 }
 
