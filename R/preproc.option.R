@@ -155,6 +155,16 @@ SPECIES.entrez.all <- c(SPECIES.entrez.human, SPECIES.entrez.mouse, SPECIES.entr
 names(SPECIES.entrez.all) <- SPECIES.all
 
 #' Constant Option
+#' @name TO.MATRIX.datasets
+#' @docType data
+TO.MATRIX.datasets <- "datasets"
+
+#' Constant Option
+#' @name TO.MATRIX.clinicals
+#' @docType data
+TO.MATRIX.clinicals <- "clinicals"
+
+#' Constant Option
 #' @name PLATFORM.hgu95a
 #' @docType data
 PLATFORM.hgu95a                            <- "hgu95a.db::hgu95aSYMBOL"
