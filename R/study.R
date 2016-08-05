@@ -107,7 +107,7 @@ setMethod("initialize", "Study",
       for (i in 1:n) {
         dataset  <- .Object@datasets[[i]]
         clinical <- .Object@clinicals[[i]]
-        sample.names <- row.names(dataset)
+        sample.names <- colnames(dataset)
         .Object@clinicals[[i]] <- clinical[sample.names,]
       }
     }
