@@ -108,7 +108,7 @@ setMethod("initialize", "Study",
         dataset  <- .Object@datasets[[i]]
         clinical <- .Object@clinicals[[i]]
         sample.names <- colnames(dataset)
-        .Object@clinicals[[i]] <- clinical[sample.names,]
+        .Object@clinicals[[i]] <- clinical[sample.names, , drop=F]
       }
     }
     .Object@stype <- stype(.Object@datasets)
