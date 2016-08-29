@@ -118,7 +118,7 @@ setMethod("Annotate", signature(dataset="Study"),
       stop("annotation on Study object is only applicable to single study")
     study <- dataset
     dataset <- to.matrix(study)
-    dataset <- Annotate(dataset, id.type, platform, annotation.file)
+    dataset <- Annotate(dataset, id.type, platform, species, annotation.file)
     study@datasets <- list(dataset)
     study
   }
