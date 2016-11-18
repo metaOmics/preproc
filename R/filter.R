@@ -74,7 +74,7 @@ Filter.list <- function(datasets, data.type, del.perc, threshold) {
     gene.mv <- names(mean.r.mv)[index]
 
     sd.rank <- sapply(datasets,
-                      function(z)rank(apply(z[gene.mv,], 1, mean, na.rm=T)))
+                      function(z)rank(apply(z[gene.mv,], 1, sd, na.rm=T)))
     mean.r.sd <- rowMeans(sd.rank, na.rm=T)
     mean.r.sd <- mean.r.sd[order(mean.r.sd, decreasing=T)]
     index <- which(mean.r.sd > quantile(mean.r.sd, del.perc[2]))
