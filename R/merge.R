@@ -66,8 +66,12 @@ Merge.Study <- function(datasets, name) {
     study.dtype <- DTYPE.continuous
   else if (all(is.discrete(studies)))
     study.dtype <- DTYPE.discrete
-  else
-    stop("You can't merge continuous data with discrete data")
+  #else
+  #  stop("You can't merge continuous data with discrete data")
+  else if (sum(is.continuous(studies)) >= sum(is.discrete(studies)))
+    study.dtype <- DTYPE.continuous 
+  else if (sum(is.continuous(studies)) < sum(is.discrete(studies)))
+    study.dtype <- DTYPE.discrete 
   datasets  <- c()
   clinicals <- c()
   for (study in studies) {
@@ -77,4 +81,3 @@ Merge.Study <- function(datasets, name) {
   datasets <- Merge.matrix(datasets)
   new("Study", name=name, dtype=study.dtype, datasets=datasets, clinicals=clinicals)
 }
-
