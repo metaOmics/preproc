@@ -63,15 +63,16 @@ Merge.Study <- function(datasets, name) {
   studies <- datasets
   study.dtype <- NULL
   if (all(is.continuous(studies)))
-    study.dtype <- DTYPE.continuous
+    study.dtype <- DTYPE.microarray
   else if (all(is.discrete(studies)))
-    study.dtype <- DTYPE.discrete
+  study.dtype <- DTYPE.RNAseq.count
   #else
   #  stop("You can't merge continuous data with discrete data")
   else if (sum(is.continuous(studies)) >= sum(is.discrete(studies)))
-    study.dtype <- DTYPE.continuous 
+    study.dtype <- DTYPE.microarray
   else if (sum(is.continuous(studies)) < sum(is.discrete(studies)))
-    study.dtype <- DTYPE.discrete 
+    study.dtype <- DTYPE.RNAseq.count
+    #study.dtype <- DTYPE.discrete 
   datasets  <- c()
   clinicals <- c()
   for (study in studies) {

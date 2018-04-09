@@ -60,25 +60,15 @@ DTYPE.RNAseq.count <- "RNAseq-count"
 #' Constant Option
 #' @name DTYPE.RNAseq.FPKM
 #' @docType data
-DTYPE.RNAseq.FPKM  <- "RNAseq-FPKM"
-
-#' Constant Option
-#' @name DTYPE.continuous
-#' @docType data
-DTYPE.continuous   <- "continuous"
-
-#' Constant Option
-#' @name DTYPE.discrete
-#' @docType data
-DTYPE.discrete     <- "discrete"
+DTYPE.RNAseq.FPKM  <- "RNAseq-FPKM/RPKM/TPM"
 
 #' Constant Option
 #' @name DTYPE.all
 #' @docType data
 DTYPE.all <-
-  c(DTYPE.microarray, DTYPE.RNAseq.count, DTYPE.RNAseq.FPKM, DTYPE.continuous, DTYPE.discrete)
+  c(DTYPE.microarray, DTYPE.RNAseq.count, DTYPE.RNAseq.FPKM)
 names(DTYPE.all) <-
-  c("microarray", "RNA sequence count", "RNA sequence FPKM", "continuous", "discrete")
+  c("microarray", "RNAseq-count", "RNAseq-FPKM/RPKM/TPM")
 
 #' Constant Option
 #' @name STYPE.multiple

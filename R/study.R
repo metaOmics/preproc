@@ -251,7 +251,7 @@ setGeneric("ntype", function(object) {
 #' @rdname ntype-methods
 #' @aliases ntype,character-method
 setMethod("ntype", signature(object="character"), function(object){
-  if(object == DTYPE.RNAseq.count || object == DTYPE.discrete)
+  if(object == DTYPE.RNAseq.count)
     NTYPE.discrete
   else
     NTYPE.continuous

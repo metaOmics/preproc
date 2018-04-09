@@ -26,11 +26,11 @@
 #' column is for one sample. The row names are gene symbols.
 #' @param data.type a character string to specify the type of data in
 #' \code{datasets}. It should be \code{"microarray"},
-#' \code{"RNAseq-FPKM"}, or \code{"RNAseq-count"}.
+#' \code{"RNAseq-FPKM/RPKM/TPM"}, or \code{"RNAseq-count"}.
 #' @param del.perc a numeric vector with two elements, which specify
 #' the percentage of genes to be filtered in the two sequential steps
 #' of gene filtering when \code{data.type} is \code{"microarray"} or
-#' \code{"RNAseq-FPKM"}. The default is \code{c(0.3, 0.3)}. See Details.
+#' \code{"RNAseq-FPKM/RPMK/TPM"}. The default is \code{c(0.3, 0.3)}. See Details.
 #' @param threshold a numeric value to specify the threshold when
 #' \code{data.type} is \code{"RNAseq-count"}. The default is \code{1}.
 #' See details.
@@ -64,7 +64,7 @@ Filter <- function(datasets, data.type, del.perc=c(0.3, 0.3), threshold=1) {
 }
 
 Filter.list <- function(datasets, data.type, del.perc, threshold) {
-  if (data.type == DTYPE.continuous || data.type == DTYPE.RNAseq.FPKM ||
+  if (data.type == DTYPE.RNAseq.FPKM ||
       data.type == DTYPE.microarray) {
     mean.rank <- sapply(datasets,
                         function(z)rank(apply(z, 1, mean, na.rm=T)))
@@ -81,7 +81,7 @@ Filter.list <- function(datasets, data.type, del.perc, threshold) {
     final.genes <- names(mean.r.sd)[index]
     
     res <- lapply(datasets, function(x) x[final.genes, ])
-  } else if (data.type == DTYPE.discrete || data.type == DTYPE.RNAseq.count) {
+  } else if ( data.type == DTYPE.RNAseq.count) {
     min.mean <- apply(sapply(datasets, function(z)rowMeans(z)), 1, min)
     index <- min.mean > threshold
     
